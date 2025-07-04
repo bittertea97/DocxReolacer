@@ -11,10 +11,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # 使用最新版checkout
       
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5  # 使用最新版setup-python
       with:
         python-version: '3.10'
         
@@ -23,11 +23,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyinstaller
         pip install python-docx
-        pip install pillow  # 处理图标可能需要
+        pip install pillow
         
     - name: Build executable
       run: |
-        # 重命名主文件为更友好的名称
+        # 重命名主文件
         ren main.py DocxReplacer.py
         
         # 使用 PyInstaller 打包
@@ -78,7 +78,7 @@ jobs:
         & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss
         
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # 升级到v4版本
       with:
         name: Windows-Installer
         path: Output\DocxReplacer_Setup.exe
